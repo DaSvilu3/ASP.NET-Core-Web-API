@@ -1,0 +1,35 @@
+﻿<Properties StartupConfiguration="{A078EE9C-9F44-4C83-9858-4F25C9C85C93}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="RestAPIDemo/Services/LoggerManager.cs">
+    <Files>
+      <File FileName="RestAPIDemo/Startup.cs" Line="27" Column="6" />
+      <File FileName="RestAPIDemo/Services/UserSqlService.cs" Line="96" Column="1" />
+      <File FileName="RestAPIDemo/Services/LoggerManager.cs" Line="24" Column="10" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="RestAPIDemo" expanded="True">
+            <Node name="RestAPIDemo" expanded="True">
+              <Node name="Controllers" expanded="True" />
+              <Node name="Dto" expanded="True" />
+              <Node name="Extensions" expanded="True" />
+              <Node name="Logs" expanded="True" />
+              <Node name="Models" expanded="True" />
+              <Node name="Services" expanded="True">
+                <Node name="LoggerManager.cs" selected="True" />
+              </Node>
+              <Node name="appsettings.json" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.RestAPIDemo PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
