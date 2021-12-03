@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -27,54 +27,6 @@ namespace RestAPIDemo.Controllers
             _userService = userService;
             _logger = logger;
             _webHostEnvironment = webHostEnvironment;
-        }
-
-        // Endpoint to Upload user Profiles, accepting FileUpload DTO and User Guid
-        [HttpPost]
-        [Route("api/uploadUserProfile")]
-        public string UploadUserProfile([FromForm] FileUpload fileUpload, Guid id)
-        {
-            string ImagePath = "NOT_DEFINED"; // initial value for Image Path
-            try
-            {
-                // check if there is a file in the request
-                if(fileUpload.files.Length > 0)
-                {
-                    // initial the full path of the uploaded file, files will be in wwwroot/uploads/
-                    string path = _webHostEnvironment.WebRootPath + "/" + "uploads/";
-
-                    // check if the directry exist, if not create it with the specified path
-                    if(!Directory.Exists(path))
-                    {
-                        Directory.CreateDirectory(path);
-                    }
-
-                    // Start storing file by copying it to the path and update ImagePath with the full path
-                    // to be store
-                    using (FileStream fileStream = System.IO.File.Create(path + fileUpload.files.FileName))
-                    {
-                        fileUpload.files.CopyTo(fileStream);
-                        fileStream.Flush();
-                        ImagePath = path + fileUpload.files.FileName;
-                    }
-
-
-                    // Update User Details with the ImagePath 
-                    _userService.UpdateUserProfile(id, ImagePath);
-                }
-                else
-                {
-                    // if there was no file, just return NOT_DEFINED value
-                    ImagePath = "There is No File in the Request, kindly use 1 File";
-                }
-            }catch(Exception ex)
-            {
-                _logger.LogError(ex.Message);
-                ImagePath = "Error Occured During Uploading the File";
-            }
-
-            // return the Message to the User
-            return ImagePath;
         }
 
 
@@ -120,6 +72,57 @@ namespace RestAPIDemo.Controllers
                 return BadRequest("the data is not valid bro");
             }
         }
+
+
+        // Endpoint to Upload user Profiles, accepting FileUpload DTO and User Guid
+        [HttpPost]
+        [Route("api/uploadUserProfile")]
+        public string UploadUserProfile([FromForm] FileUpload fileUpload, Guid id)
+        {
+            string ImagePath = "NOT_DEFINED"; // initial value for Image Path
+            try
+            {
+                // check if there is a file in the request
+                if (fileUpload.files.Length > 0)
+                {
+                    // initial the full path of the uploaded file, files will be in wwwroot/uploads/
+                    string path = _webHostEnvironment.WebRootPath + "/" + "uploads/";
+
+                    // check if the directry exist, if not create it with the specified path
+                    if (!Directory.Exists(path))
+                    {
+                        Directory.CreateDirectory(path);
+                    }
+
+                    // Start storing file by copying it to the path and update ImagePath with the full path
+                    // to be store
+                    using (FileStream fileStream = System.IO.File.Create(path + fileUpload.files.FileName))
+                    {
+                        fileUpload.files.CopyTo(fileStream);
+                        fileStream.Flush();
+                        ImagePath = path + fileUpload.files.FileName;
+                    }
+
+
+                    // Update User Details with the ImagePath 
+                    _userService.UpdateUserProfile(id, ImagePath);
+                }
+                else
+                {
+                    // if there was no file, just return NOT_DEFINED value
+                    ImagePath = "There is No File in the Request, kindly use 1 File";
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                ImagePath = "Error Occured During Uploading the File";
+            }
+
+            // return the Message to the User
+            return ImagePath;
+        }
+
 
         // Endpoint to delete user, the function accept Guid of the user.
         [HttpDelete]
